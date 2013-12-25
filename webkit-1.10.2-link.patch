@@ -1,0 +1,67 @@
+--- webkitgtk-1.10.2/GNUmakefile.in.link	2012-12-10 02:20:20.000000000 +0800
++++ webkitgtk-1.10.2/GNUmakefile.in	2012-12-18 16:48:51.161330683 +0800
+@@ -1402,7 +1402,8 @@
+ 	$(Libraries_libTestRunnerInjectedBundle_la_LDFLAGS) $(LDFLAGS) \
+ 	-o $@
+ @ENABLE_WEBKIT2_TRUE@am_Libraries_libTestRunnerInjectedBundle_la_rpath =
+-Libraries_libTestWebKitAPIInjectedBundle_la_LIBADD =
++Libraries_libTestWebKitAPIInjectedBundle_la_LIBADD = libWTF.la \
++	libwebkit2gtk-@WEBKITGTK_API_MAJOR_VERSION@.@WEBKITGTK_API_MINOR_VERSION@.la $(GTK_LIBS)
+ am__Libraries_libTestWebKitAPIInjectedBundle_la_SOURCES_DIST =  \
+ 	Tools/TestWebKitAPI/InjectedBundleController.cpp \
+ 	Tools/TestWebKitAPI/InjectedBundleController.h \
+@@ -1496,7 +1497,7 @@
+ 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
+ 	$(Libraries_libgtest_la_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) \
+ 	$(LDFLAGS) -o $@
+-TestNetscapePlugin_libtestnetscapeplugin_la_LIBADD =
++TestNetscapePlugin_libtestnetscapeplugin_la_LIBADD = -lX11
+ am__TestNetscapePlugin_libtestnetscapeplugin_la_SOURCES_DIST = Tools/DumpRenderTree/TestNetscapePlugIn/Tests/DocumentOpenInDestroyStream.cpp \
+ 	Tools/DumpRenderTree/TestNetscapePlugIn/Tests/EvaluateJSAfterRemovingPluginElement.cpp \
+ 	Tools/DumpRenderTree/TestNetscapePlugIn/Tests/FormValue.cpp \
+@@ -22529,7 +22530,8 @@
+ 	Tools/WebKitTestRunner/InjectedBundle/TextInputController.h
+ 
+ Libraries_libTestRunnerInjectedBundle_la_LIBADD = \
+-	libWebCoreInternals.la
++	libWebCoreInternals.la \
++	libjavascriptcoregtk-@WEBKITGTK_API_MAJOR_VERSION@.@WEBKITGTK_API_MINOR_VERSION@.la libwebkit2gtk-@WEBKITGTK_API_MAJOR_VERSION@.@WEBKITGTK_API_MINOR_VERSION@.la $(GTK_LIBS) -lfontconfig
+ 
+ Libraries_libTestRunnerInjectedBundle_la_LDFLAGS = \
+ 	-rpath ${shell pwd}/$(top_builddir)/../unix/TestNetscapePlugin/.libs \
+--- webkitgtk-1.10.2/Tools/GNUmakefile.am.link	2012-11-24 04:13:23.000000000 +0800
++++ webkitgtk-1.10.2/Tools/GNUmakefile.am	2012-12-18 16:48:51.161330683 +0800
+@@ -247,6 +247,8 @@
+ 	-avoid-version \
+ 	-module
+ 
++TestNetscapePlugin_libtestnetscapeplugin_la_LIBADD = -lX11
++
+ CLEANFILES += TestNetscapePlugin/libtestnetscapeplugin.la
+ endif
+ 
+--- webkitgtk-1.10.2/Tools/TestWebKitAPI/GNUmakefile.am.link	2012-11-24 04:12:19.000000000 +0800
++++ webkitgtk-1.10.2/Tools/TestWebKitAPI/GNUmakefile.am	2012-12-18 16:48:51.171330945 +0800
+@@ -196,6 +196,9 @@
+ 	-avoid-version \
+ 	-module
+ 
++Libraries_libTestWebKitAPIInjectedBundle_la_LIBADD = libWTF.la \
++	libwebkit2gtk-@WEBKITGTK_API_MAJOR_VERSION@.@WEBKITGTK_API_MINOR_VERSION@.la $(GTK_LIBS)
++
+ Libraries_libTestWebKitAPIInjectedBundle_la_CPPFLAGS = \
+ 	$(Libraries_libTestWebKitAPIMain_la_CPPFLAGS) \
+ 	-I$(top_builddir)/DerivedSources/InjectedBundle \
+--- webkitgtk-1.10.2/Tools/WebKitTestRunner/GNUmakefile.am.link	2012-11-24 04:12:19.000000000 +0800
++++ webkitgtk-1.10.2/Tools/WebKitTestRunner/GNUmakefile.am	2012-12-18 16:48:51.171330945 +0800
+@@ -110,7 +110,8 @@
+ 	Tools/WebKitTestRunner/InjectedBundle/TextInputController.h
+ 
+ Libraries_libTestRunnerInjectedBundle_la_LIBADD = \
+-	libWebCoreInternals.la
++	libWebCoreInternals.la \
++	libjavascriptcoregtk-@WEBKITGTK_API_MAJOR_VERSION@.@WEBKITGTK_API_MINOR_VERSION@.la libwebkit2gtk-@WEBKITGTK_API_MAJOR_VERSION@.@WEBKITGTK_API_MINOR_VERSION@.la $(GTK_LIBS) -lfontconfig
+ 
+ Libraries_libTestRunnerInjectedBundle_la_LDFLAGS = \
+ 	-rpath ${shell pwd}/$(top_builddir)/../unix/TestNetscapePlugin/.libs \
+
