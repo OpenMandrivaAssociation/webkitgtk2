@@ -234,7 +234,7 @@ GObject Introspection interface description for WebKit.
 
 %prep
 %setup -qn %{oname}-%{version}
-%apply_patches
+%autopatch -p1
 # Don't force -O2
 sed -i 's/-O2//g' configure.ac
 
