@@ -39,7 +39,7 @@ Version:	1.10.2
 Release:	1
 License:	BSD and LGPLv2+
 Group:		System/Libraries
-Url:		http://www.webkitgtk.org
+Url:		https://www.webkitgtk.org
 Source0:	http://www.webkitgtk.org/releases/%{oname}-%{version}.tar.xz
 # (blino) needed for first-time wizard (display_help) to be able to close its window with javascript
 Patch0:		webkit-1.10.2-link.patch
