@@ -49,6 +49,11 @@ Patch2: 	webkit-1.3.10-nspluginwrapper.patch
 # suse patches
 Patch3:		webkit-gir-fixup.patch
 
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	gperf
